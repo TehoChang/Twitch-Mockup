@@ -4,7 +4,7 @@
 
 A mock twitch website that displays a list of videos in multi-language. Users can click their preferred video and link to the specified channel on twitch. (JQuery, Ajax)
 
----
+--
 
 ### API: Helix Twitch API
 
@@ -37,10 +37,8 @@ A Response will look like follows. The access_token is your OAuth token.. The ac
     "token_type": "bearer"
 }
 ```
-
+--
 ### Function:
-
----
 
 Implemented infinite scroll
 
