@@ -9,42 +9,42 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/i18n/lang-eng.js":
-/*!******************************!*\
-  !*** ./src/i18n/lang-eng.js ***!
-  \******************************/
+/***/ "./src/JS/i18n/lang-eng.js":
+/*!*********************************!*\
+  !*** ./src/JS/i18n/lang-eng.js ***!
+  \*********************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
 /*! CommonJS bailout: module.exports is used directly at 1:0-14 */
 /***/ ((module) => {
 
-eval("module.exports = {\n  title: 'The Channels in English'\n};\n\n//# sourceURL=webpack://mockTwitch/./src/i18n/lang-eng.js?");
+eval("module.exports = {\n  title: 'The Channels in English'\n};\n\n//# sourceURL=webpack://mockTwitch/./src/JS/i18n/lang-eng.js?");
 
 /***/ }),
 
-/***/ "./src/i18n/lang-th.js":
-/*!*****************************!*\
-  !*** ./src/i18n/lang-th.js ***!
-  \*****************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 1:0-14 */
-/***/ ((module) => {
-
-eval("module.exports = {\n  title: 'The Channels in Thai '\n};\n\n//# sourceURL=webpack://mockTwitch/./src/i18n/lang-th.js?");
-
-/***/ }),
-
-/***/ "./src/i18n/lang-zh-tw.js":
+/***/ "./src/JS/i18n/lang-th.js":
 /*!********************************!*\
-  !*** ./src/i18n/lang-zh-tw.js ***!
+  !*** ./src/JS/i18n/lang-th.js ***!
   \********************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
 /*! CommonJS bailout: module.exports is used directly at 1:0-14 */
 /***/ ((module) => {
 
-eval("module.exports = {\n  title: '用中文直播的頻道'\n};\n\n//# sourceURL=webpack://mockTwitch/./src/i18n/lang-zh-tw.js?");
+eval("module.exports = {\n  title: 'The Channels in Thai '\n};\n\n//# sourceURL=webpack://mockTwitch/./src/JS/i18n/lang-th.js?");
+
+/***/ }),
+
+/***/ "./src/JS/i18n/lang-zh-tw.js":
+/*!***********************************!*\
+  !*** ./src/JS/i18n/lang-zh-tw.js ***!
+  \***********************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module */
+/*! CommonJS bailout: module.exports is used directly at 1:0-14 */
+/***/ ((module) => {
+
+eval("module.exports = {\n  title: '用中文直播的頻道'\n};\n\n//# sourceURL=webpack://mockTwitch/./src/JS/i18n/lang-zh-tw.js?");
 
 /***/ }),
 
@@ -90,12 +90,12 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 /******/ 	
 /************************************************************************/
 (() => {
-/*!*********************!*\
-  !*** ./src/main.js ***!
-  \*********************/
+/*!************************!*\
+  !*** ./src/JS/main.js ***!
+  \************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_require__ */
-eval("function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \"number\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it[\"return\"] != null) it[\"return\"](); } finally { if (didErr) throw err; } } }; }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nvar $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n\nvar i18n = {\n  en: __webpack_require__(/*! ./i18n/lang-eng */ \"./src/i18n/lang-eng.js\"),\n  zh: __webpack_require__(/*! ./i18n/lang-zh-tw */ \"./src/i18n/lang-zh-tw.js\"),\n  th: __webpack_require__(/*! ./i18n/lang-th */ \"./src/i18n/lang-th.js\")\n};\nvar nowIndex = 0; //是否正在等待請求返回\n\nvar isLoading = false;\nvar clientId = 'af2to134op81557smc4lidr80q12so';\nvar authToken = \"Bearer 1lh1ca7kbnjlej5wj4o1b753p6j4dp\";\nvar apiURL;\nvar Lang = 'zh';\n\nfunction changeLang(lang) {\n  Lang = lang;\n  $('.title h1').text(i18n[lang].title);\n  $('.row').empty();\n  getData(Lang, callback);\n} //bug：\n// 當參數叫cb，真正要調用的函數也叫cb，編譯出現問題！！\n\n\nfunction getData(lang, cb) {\n  apiURL = \"https://api.twitch.tv/helix/streams/?game=League%20of%20Legends&first=10&offset=\".concat(nowIndex, \"&language=\").concat(lang);\n  isLoading = true;\n  $.ajax({\n    url: apiURL,\n    headers: {\n      'Client-ID': clientId,\n      'Authorization': \"Bearer 1lh1ca7kbnjlej5wj4o1b753p6j4dp\"\n    },\n    success: function success(res) {\n      cb(null, res);\n    },\n    error: function error(err) {\n      cb(err);\n    }\n  });\n}\n\nfunction callback(err, res) {\n  if (err) {\n    console.log(err);\n  }\n\n  var data = res.data;\n\n  var _iterator = _createForOfIteratorHelper(data),\n      _step;\n\n  try {\n    for (_iterator.s(); !(_step = _iterator.n()).done;) {\n      d = _step.value;\n      $('.row').append(renderCol(d));\n    }\n  } catch (err) {\n    _iterator.e(err);\n  } finally {\n    _iterator.f();\n  }\n\n  isLoading = false;\n  nowIndex += 10; // 目標：整個畫面出現時，有漸進式效果（效果不好）\n  //JQuery不能選到偽元素，因為偽元素並不是真正的DOM，JS無法存取\n  // $('.wrap::before').css('opacity','0')\n}\n\n$(document).ready(function () {\n  getData(Lang, callback);\n  $(window).scroll(function () {\n    console.log(Lang);\n\n    if ($(window).scrollTop() + $(window).height() > $(document).height() - 50 && !isLoading) {\n      getData(Lang, callback);\n    }\n  });\n  $('.zh').click(function () {\n    changeLang('zh');\n  });\n  $('.en').click(function () {\n    changeLang('en');\n  });\n  $('.th').click(function () {\n    changeLang('th');\n  });\n}); //成功將html字串加到index.html\n\nfunction renderCol(d) {\n  return \"\\n      <a href=\\\"https://www.twitch.tv/\".concat(d.user_name, \"\\\">\\n        <div class=\\\"col\\\">\\n          <div class=\\\"preview\\\">\\n            <img src=\\\"\").concat(d.thumbnail_url.replace('-{width}x{height}', ''), \"\\\" onload=\\\"this.style.opacity=1\\\">\\n          </div>    \\n          <div class=\\\"bottom\\\">\\n            <div class=\\\"avatar\\\">\\n              <img src=\\\"./static/pics/avator.png\\\" alt=\\\"\").concat(d.user_name, \"\\\" >\\n            </div>\\n            <div class=\\\"intro\\\">\\n              <div class=\\\"channel-name\\\">\").concat(d.title, \"</div>\\n              <div class=\\\"user-name\\\">\").concat(d.user_name, \"</div>\\n            </div>\\n          </div>\\n        </div>\\n      </a>\");\n} // getData(callback);\n// $(window).scroll(() => {\n//   if ($(window).scrollTop() + $(window).height() >= $(document).height() - 200) {\n//     console.log('bottom')\n//   }\n\n//# sourceURL=webpack://mockTwitch/./src/main.js?");
+eval("function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \"number\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it[\"return\"] != null) it[\"return\"](); } finally { if (didErr) throw err; } } }; }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nvar $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n\nvar i18n = {\n  en: __webpack_require__(/*! ./i18n/lang-eng */ \"./src/JS/i18n/lang-eng.js\"),\n  zh: __webpack_require__(/*! ./i18n/lang-zh-tw */ \"./src/JS/i18n/lang-zh-tw.js\"),\n  th: __webpack_require__(/*! ./i18n/lang-th */ \"./src/JS/i18n/lang-th.js\")\n};\nvar nowIndex = 0; //是否正在等待請求返回\n\nvar isLoading = false;\nvar clientId = 'af2to134op81557smc4lidr80q12so';\nvar authToken = \"Bearer 1lh1ca7kbnjlej5wj4o1b753p6j4dp\";\nvar apiURL;\nvar Lang = 'zh';\nvar cursor = '';\n\nfunction changeLang(lang) {\n  Lang = lang;\n  $('.title h1').text(i18n[lang].title);\n  $('.row').empty();\n  getData(callback);\n} //bug：\n// 當參數叫cb，真正要調用的函數也叫cb，編譯出現問題！！\n\n\nfunction getData(cb) {\n  apiURL = \"https://api.twitch.tv/helix/streams/?game=League%20of%20Legends&first=10&offset=\".concat(nowIndex, \"&language=\").concat(Lang, \"&after=\").concat(cursor);\n  isLoading = true;\n  $.ajax({\n    url: apiURL,\n    headers: {\n      'Client-ID': clientId,\n      'Authorization': authToken\n    },\n    success: function success(res) {\n      cb(null, res);\n    },\n    error: function error(err) {\n      cb(err);\n    }\n  });\n}\n\nfunction callback(err, res) {\n  if (err) {\n    console.log(err);\n  }\n\n  var data = res.data,\n      pagination = res.pagination;\n  console.log(data);\n\n  var _iterator = _createForOfIteratorHelper(data),\n      _step;\n\n  try {\n    for (_iterator.s(); !(_step = _iterator.n()).done;) {\n      d = _step.value;\n      $('.row').append(renderCol(d));\n    }\n  } catch (err) {\n    _iterator.e(err);\n  } finally {\n    _iterator.f();\n  }\n\n  cursor = pagination.cursor;\n  console.log(cursor);\n  isLoading = false;\n  nowIndex += 10; // 目標：整個畫面出現時，有漸進式效果（效果不好）\n  //JQuery不能選到偽元素，因為偽元素並不是真正的DOM，JS無法存取\n  // $('.wrap::before').css('opacity','0')\n}\n\n$(document).ready(function () {\n  getData(callback);\n  $(window).scroll(function () {\n    if ($(window).scrollTop() + $(window).height() > $(document).height() - 50 && !isLoading) {\n      getData(callback);\n    }\n  });\n  $('.zh').click(function () {\n    changeLang('zh');\n  });\n  $('.en').click(function () {\n    changeLang('en');\n  });\n  $('.th').click(function () {\n    changeLang('th');\n  });\n}); //成功將html字串加到index.html\n\nfunction renderCol(d) {\n  return \"\\n      <a href=\\\"https://www.twitch.tv/search?term=\".concat(d.user_name, \"\\\">\\n        <div class=\\\"col\\\">\\n          <div class=\\\"preview\\\">\\n            <img src=\\\"\").concat(d.thumbnail_url.replace('-{width}x{height}', ''), \"\\\" onload=\\\"this.style.opacity=1\\\">\\n          </div>    \\n          <div class=\\\"bottom\\\">\\n            <div class=\\\"avatar\\\">\\n              <img src=\\\"../static/pics/avatar.png\\\" alt=\\\"\").concat(d.user_name, \"\\\" >\\n            </div>\\n            <div class=\\\"intro\\\">\\n              <div class=\\\"channel-name\\\">\").concat(d.title, \"</div>\\n              <div class=\\\"user-name\\\">\").concat(d.user_name, \"</div>\\n            </div>\\n          </div>\\n        </div>\\n      </a>\");\n}\n\n//# sourceURL=webpack://mockTwitch/./src/JS/main.js?");
 })();
 
 /******/ })()

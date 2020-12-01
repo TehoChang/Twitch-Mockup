@@ -1,8 +1,8 @@
 var $=require('jquery')
 var i18n={
-  en:require('../i18n/lang-eng'),
-  zh:require('../i18n/lang-zh-tw'),
-  th:require('../i18n/lang-th'),
+  en:require('./i18n/lang-eng'),
+  zh:require('./i18n/lang-zh-tw'),
+  th:require('./i18n/lang-th'),
 }
 
 let nowIndex = 0
@@ -12,20 +12,22 @@ var clientId = 'af2to134op81557smc4lidr80q12so'
 var authToken ="Bearer 1lh1ca7kbnjlej5wj4o1b753p6j4dp"
 let apiURL
 let Lang='zh'
+let cursor=''
 
 function changeLang(lang){
   Lang=lang
   $('.title h1').text(i18n[lang].title)
   $('.row').empty()  
-  getData(Lang,callback)
+  getData(callback)
   
   
 }
 
 //bug：
 // 當參數叫cb，真正要調用的函數也叫cb，編譯出現問題！！
-function getData(lang, cb) {
-  apiURL = `https://api.twitch.tv/helix/streams/?game=League%20of%20Legends&first=10&offset=${nowIndex}&language=${lang}`
+function getData(cb) {
+
+  apiURL = `https://api.twitch.tv/helix/streams/?game=League%20of%20Legends&first=10&offset=${nowIndex}&language=${Lang}&after=${cursor}`
   isLoading = true;
   $.ajax({
     url: apiURL,
@@ -47,10 +49,13 @@ function callback(err, res) {
   if (err) {
     console.log(err)
   }
-  const { data } = res
+  const { data,pagination } = res
+  console.log(data)
   for (d of data) {
     $('.row').append(renderCol(d))
   }
+  cursor=pagination.cursor
+  console.log(cursor)
   isLoading = false
   nowIndex+=10
   // 目標：整個畫面出現時，有漸進式效果（效果不好）
@@ -59,13 +64,13 @@ function callback(err, res) {
 }
 
 $(document).ready(function(){
-  getData(Lang,callback);
+  getData(callback);
 
   $(window).scroll(()=>{
     
-    console.log(Lang)
+    
     if ($(window).scrollTop() + $(window).height() > ($(document).height() - 50) && !isLoading) {    
-      getData(Lang,callback)
+      getData(callback)
     }
   })
   $('.zh').click(()=>{
@@ -85,14 +90,14 @@ $(document).ready(function(){
 //成功將html字串加到index.html
 function renderCol(d) {
   return `
-      <a href="https://www.twitch.tv/${d.user_name}">
+      <a href="https://www.twitch.tv/search?term=${d.user_name}">
         <div class="col">
           <div class="preview">
             <img src="${(d.thumbnail_url).replace('-{width}x{height}', '')}" onload="this.style.opacity=1">
           </div>    
           <div class="bottom">
             <div class="avatar">
-              <img src="./static/pics/avator.png" alt="${d.user_name}" >
+              <img src="../static/pics/avatar.png" alt="${d.user_name}" >
             </div>
             <div class="intro">
               <div class="channel-name">${d.title}</div>

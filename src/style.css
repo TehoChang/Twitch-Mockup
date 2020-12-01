@@ -4,14 +4,14 @@
   text-decoration: none;
 }
 body{
-  background:url("./static/pics/bg.jpg");
+  background:url("../static/pics/bg.jpg");
   background-attachment: fixed;
   
 }
 .wrap{
   
   background-color:rgba(0,0,0,0.5);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 
@@ -85,9 +85,6 @@ img{
   width: 100%;
   align-items: center;
 } 
-.bottom .avatar, .bottom .intro{
-  
-}
 
 .intro{
   color:whitesmoke;
