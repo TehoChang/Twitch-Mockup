@@ -1,0 +1,22 @@
+{
+  "name": "mockTwitch",
+  "version": "1.0.0",
+  "description": "新版twitch API: /streams 不提供用戶頭像的url，故在此先不作處理 https://discuss.dev.twitch.tv/t/avatars-profile-pictures-on-helix-streams/25809",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "babel-loader": "^8.2.1",
+    "webpack": "^5.5.1"
+  }
+}

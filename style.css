@@ -1,0 +1,128 @@
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+}
+body{
+  background:url("./static/pics/bg.jpg");
+  background-attachment: fixed;
+  
+}
+.wrap{
+  
+  background-color:rgba(0,0,0,0.5);
+  height: 100vh;
+}
+
+
+/*我想做到整個畫面出現時，有漸進式效果，但效果不好 */
+/* .row{
+  opacity:0;
+  transition:opacity 3s ease;
+} */
+.lang{
+  width:100%;
+  text-align: center;
+  color:whitesmoke;
+  transition:color 0.5s ease;
+  padding-bottom: 10px;
+  font-size: 16px;
+}
+.lang .zh:hover, .en:hover, .th:hover{
+  color:lightsteelblue;
+  cursor: pointer; 
+}
+
+
+
+.title{
+  padding: 20px 0 5px;
+  
+}
+.title h1{
+  color:whitesmoke;
+  text-align: center;
+  font-size: 33px;
+}
+
+img{
+  vertical-align:bottom;
+}
+
+.col {
+  width: 300px;
+  margin:10px;
+  transition: 0.5s;
+}
+.col:hover{
+  filter:brightness(1.3);
+  cursor:pointer;
+  box-shadow:5px 5px 10px #888;
+ 
+}
+.row{
+  margin: auto;
+  width:1000px;
+  /* 外框的寬度固定下來，item才不會隨意換行 */
+  display:flex;
+  flex-wrap: wrap;
+  
+}
+.preview img{
+  width: 100%;
+}
+.avatar img{
+  width: 100%;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  margin-left: 5px;
+}
+
+.bottom{
+  background-color:rgba(0,0,0,0.5);
+  display:flex;
+  width: 100%;
+  align-items: center;
+} 
+.bottom .avatar, .bottom .intro{
+  
+}
+
+.intro{
+  color:whitesmoke;
+  font-size: 15px;
+  padding: 5px 10px;
+  white-space: nowrap;
+  
+  /* 不知道為什麼不生效 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width:250px;
+  
+}
+
+/* 實現placeholder */
+.preview{
+  width: 300px;
+  height: 168.75px;
+  position: relative;
+}
+/* before是跟preview下層的偽元素 */
+ .preview:before{
+   content:'';
+   width: 100%;
+   height: 100%;
+   background:url(https://static-cdn.jtvnw.net/ttv-static/404_preview-320x180.jpg) ;
+   position:absolute;
+   top:0px;
+   left:0px;
+   
+  }
+
+.preview img{
+  position:relative;
+  opacity:0;
+  transition:opacity 0.5s ease-in;
+  
+}
